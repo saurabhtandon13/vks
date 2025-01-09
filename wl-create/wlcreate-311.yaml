@@ -1,0 +1,60 @@
+#  base64 -w 0 /etc/docker/certs.d/registry.corp.internal:8888/registry.corp.internal.cert | base64 -w 0
+
+apiVersion: v1
+data:
+  registry-cert: TFMwdExTMUNSVWRKVGlCRFJWSlVTVVpKUTBGVVJTMHRMUzB0Q2sxSlNVWndla05EUVRRclowRjNTVUpCWjBsVlNGcGxiMVY0VEZCRmJETlFUWHB5TkhsbmVpODJMMlprVG5CamQwUlJXVXBMYjFwSmFIWmpUa0ZSUlU0S1FsRkJkMWw2UlV4TlFXdEhRVEZWUlVKb1RVTlJNRFI0UkdwQlRVSm5UbFpDUVdkTlFsVnNkVnBIYkdoTlVUUjNSRUZaUkZaUlVVaEVRVlpLWW0xU2NBcFpWRVZSVFVFMFIwRXhWVVZEWjNkSVdsaG9hR0pZUW5OYVZFVlNUVUU0UjBFeFZVVkRkM2RKVlVkV2VXTXlPWFZaVjNkNFJIcEJUa0puVGxaQ1FVMU5Da0pwVW5CaWJrSXhaRVJCWlVaM01IbE9SRVY1VFdwSmQwOVVTVE5PVkZaaFJuY3dlazVFUlhsTmFrRjNUMVJKTTA1VVZtRk5SMDE0UTNwQlNrSm5UbFlLUWtGWlZFRnJUazlOVVRSM1JFRlpSRlpSVVVsRVFWWktZbTFTY0ZsVVJVOU5RWGRIUVRGVlJVSjNkMFpUVnpWcllWZEZlRVZFUVU5Q1owNVdRa0Z2VFFwQ01sWTBXVmN4ZDJKSFZYaEZWRUZRUW1kT1ZrSkJjMDFEUmtKc1kyNU9kbUp0Um5OTlVUaDNSRkZaUkZaUlVVUkVRVmxyWVZjMWQyUllVWGRuWjBscENrMUJNRWREVTNGSFUwbGlNMFJSUlVKQlVWVkJRVFJKUTBSM1FYZG5aMGxMUVc5SlEwRlJSRVJxY2swNFoybDZhblIwTTJoWVduZzBSa0kzU1ZVMFRrMEthVGgwYTJOUk9EUmxTVVJOY0dJMk5tRXhlbTR3U1hwWU5FNDBORU14ZG05V1MyWnVibVZoVW5KUWNqRm5iazVHVm1GVk1VMHhSazVPVG1sWFowd3piUXBGU2trMmFWaElVRlpFUTBsbGFtMVZUMGRSYlhKd01tZDFVbkV5ZGpNdmNqRkhiazlNY1dJeFRHVTRiVkpDUXpSTFYyZEdUMEptTlZsbWFtVldhbE5vQ2paUU1HSlRPR1ZRVUVSMGVFeG5XVUZ6ZURSTUszTXZaVnBvVlZKd1RXOHZVVFJDV1dWNU1UQlJUV1pSU0M5eU9GVkJLMU5DZEd3d2REbHJja3BFZUVRS2FVc3JhbXcxT1haTGJEUlFiRk5XVkhreFVXZERNMlZhYm5SaVExTmtVVEpPUnpoSmFFZG9iR1Z4VEdKTFZsQXpkbEI2WmpGYWVIWjFaamdyVjBWWlNRcENiVGg2VURONE4zbHBiMEZ4VWxOTlUybzBkelJ6VWxWcWVWRjBRbTl4UjFGT1RXRnZia0pGVjNkTmFrdGlSVmhFVWxKWmFrUXlSV2RGT1ZwM0szRk9Dbk12Ykc1c1N6QllVSFJ6VVZCa1ZVNWhZbVo0Vm1jeU0ydzRXRlZUVjJSYWQwMVdXVUl6VkhGWmVVZEtibUZvU1d4M1dqbDBUV0ZoUWxsUVZtSlBWbElLU20xRmNqVXpaMnRzYmt4dVMyZFhaRThyVkhRMWQyb3JNemMzVUdGblNHMXdUSE5zY1cxMUwzUlFaRFpOVDJFME5qWjZNRmxxY0hWdlNtbDFOamQ2TVFwd2JWcE9ZMkp2UzJKd1RuUmpSMVlyTDBOYVZVb3dNRkJ1U0drd1FqWm1VMk0yUVVRNVdVSkdaazB5UVV4cmRqUnRNaXQ0UmxaS1NuVktiWFJhVkdzMENtVk9Ta2hhU2poT05teHBjMHh4U0RCRlFWTjBkV0YwWVRCak0yRm9WemxpZFZwU1RXcGtVbWRuZVV4cVNGUllNVWxYUWlzdlZHVm9VRmsxY2sweFdsa0tXalZoYlZOclpXWTNOSFJ3WjBFMmRUbHVZbkJtWTFnMU1YbG9TemwyYUd0c2JuYzJNVXAxUzNRM2JYaFlZbmhHYWt4NmFFWkdWbmh2WTFWT2IzWndjQW8yVXpObWRTOURZUzlXVTJNMmN5OXlWVkZKUkVGUlFVSnZNVTEzVlZSQlpFSm5UbFpJVVRSRlJtZFJWVXBKVUhvNVRHRm1aQ3RrUlUxQmQySkRWbUpCQ2k5S1Z6QnVaa0YzU0hkWlJGWlNNR3BDUW1kM1JtOUJWVXBKVUhvNVRHRm1aQ3RrUlUxQmQySkRWbUpCTDBwWE1HNW1RWGRFZDFsRVZsSXdWRUZSU0M4S1FrRlZkMEYzUlVJdmVrRk9RbWRyY1docmFVYzVkekJDUVZFd1JrRkJUME5CWjBWQmREWXdOa0ppTm01T01EbDJWa1p2Y1UxeVpWcHdRa3hhZWs1d2RBcFJkMUYxV21acVMycE5TVXRDWVZOaU5WSTBRVGhIU1RJdlV5OXJibTVTT0ZGRk1FaEVPVzlaTUc5Q056ZFhZbmxqUXpCR2EwWlhkbEZEVTBGdU5DdElDbU50VFVOV2VucDJkRkZTZEVnMFZFNTNiblpWWmxZMWJXaEdabkF2VlcxdGMzTmhOamx5TTFWQ2RGbEtObWxSWjFBclJHSjFiRzFLUldkWloyMVVVMWdLZWpCM0swWnNTbXg1YkZKbWVIb3dWMlY0YnpkeGN6RkNPVVp3VkRCd01XZEtabEZYVTBacFRWcGtWakkyZDFGaFRXRXpiVGhEZFd3dlYzcDRXRWRYVlFwRE9IWjJMM0YzVXpFNUx6WnphakpTVVRsU1FYYzJWVzlMTlVsTGEyTjVhR3R1Vm5RNU4ycGxjazE1TjB0bVoxQk9NV2hVWTAxd01rTjFRblZ0Y0RaMUNuZFBaR2R1T1VOamFubDNka1ZvVFUxTE1HWnhUR05hVVcxUllpODVWVGRGY1VNM1ZFOXdlVlZqUVRRd09USmFVMGcxU0U1cmJtTTBXVzVDVmtwNWJtMEtlWEY1TjFKYU5YTjZWSFZrUWxoTVkyTXpiSGh4TTJseE1HWjZSMDV3WW5CTFQxVlFOV3BHU1ZaRVJsSjJRVEJYZEVOU2RDdEthWGxaVFZZelMyTkpjQXBSUTFCTGIxZGllVzV2WkRaaE5qTjBUMFJYTTJkeVRYZFNUbmRhYkVwT05FdDNjRk40Y2tJeVVGUnNhblJ5V2pGVU9XOVlUa0pTVkhkNFQzaFJaRW96Q2pWRlNsSXZhUzlFTDFVd1pYY3JaM05zVjBRNGRsYzVRWGhLYW00d1UyaHBjMjlvZGsxMVluSlhhUzkzV0Roc2RUSjRNSGhMV0U4Mk9VTnJUbWg0V1RVS01IWTFlbGQwVmsxaVR6ZHRRVTF5U1Rjdk4xZEdVR1pJVUd4cmVXTkVaU3QzSzJOa05VZFdXVkJhVkVaclZVaFJOakExWkdveU1tMUlka1JJYUhKbmVRcFVWV2hFWlhKNVpHWlNXR2RsVEVSdlJsaG9lakZpYlhCQmN6VmxWSGRFZW5Vdk5HaHJhV0pWU1RGcWIzZDZWbVJFTTJrMmFXMHpjek5XV0dWNlNFNXBDbVppVFZCa1pYRXJhMmdyWkhwb2R6MEtMUzB0TFMxRlRrUWdRMFZTVkVsR1NVTkJWRVV0TFMwdExRbz0=
+kind: Secret
+metadata:
+  name: indus-wl01-user-trusted-ca-secret
+  namespace: indus-shop
+type: Opaque
+
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  name: indus-wl01
+  namespace: indus-shop
+spec:
+  clusterNetwork:
+    services:
+      cidrBlocks: ["10.100.0.0/12"]
+    pods:
+      cidrBlocks: ["10.200.0.0/12"]
+    serviceDomain: "cluster.local"
+  topology:
+    class: tanzukubernetescluster
+    version: v1.30.1---vmware.1-fips-tkg.5
+    controlPlane:
+      replicas: 3
+      metadata:
+        annotations:
+          run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
+    workers:
+      machineDeployments:
+        - class: node-pool
+          name: node-pool-01
+          replicas: 3
+          metadata:
+            annotations:
+              run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
+          variables:
+            overrides:
+              - name: vmClass
+                value: k8s-worker
+    variables:
+      - name: vmClass
+        value: k8s-master
+      - name: storageClass
+        value: k8s-storage-policy
+      - name: defaultStorageClass
+        value: k8s-storage-policy
+      - name: ntp
+        value: ntp.broadcom.net
+      - name: podSecurityStandard
+        value:
+          enforce: "baseline"
+      - name: trust
+        value:
+          additionalTrustedCAs:
+            - name: registry-cert
