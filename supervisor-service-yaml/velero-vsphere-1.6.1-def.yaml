@@ -1,0 +1,1363 @@
+apiVersion: appplatform.wcp.vmware.com/v1alpha2
+kind: SupervisorServiceDefinition
+metadata:
+  name: placeholder
+spec:
+  crdYaml:
+    content: |
+      apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      metadata:
+        annotations:
+          controller-gen.kubebuilder.io/version: v0.9.2
+        creationTimestamp: null
+        name: veleroservices.veleroappoperator.vmware.com
+      spec:
+        group: veleroappoperator.vmware.com
+        names:
+          kind: VeleroService
+          listKind: VeleroServiceList
+          plural: veleroservices
+          singular: veleroservice
+        scope: Namespaced
+        versions:
+        - name: v1alpha1
+          schema:
+            openAPIV3Schema:
+              description: VeleroService is the Schema for the VeleroService API
+              properties:
+                apiVersion:
+                  description: 'APIVersion defines the versioned schema of this representation
+                    of an object. Servers should convert recognized schemas to the latest
+                    internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+                  type: string
+                kind:
+                  description: 'Kind is a string value representing the REST resource this
+                    object represents. Servers may infer this from the endpoint the client
+                    submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+                  type: string
+                metadata:
+                  type: object
+                spec:
+                  description: VeleroServiceSpec defines the desired state of VeleroService
+                  properties:
+                    backuplocationconfig:
+                      description: BackupLocationConfig is for provider-specific configuration
+                        fields
+                      type: string
+                    bucket:
+                      description: Bucket in object store
+                      type: string
+                    guestcbtenabled:
+                      description: ChangeBlockTracking is requested to be enabled in guest
+                        clusters if set; Otherwise, it is requested to be disabled.
+                      type: boolean
+                    image:
+                      description: Image of Velero
+                      type: string
+                    namespace:
+                      description: Namespace of Velero service
+                      type: string
+                    nodefaultbackuplocation:
+                      description: NoDefaultBackupLocation indicates whether a default backup
+                        location should be created
+                      type: boolean
+                    nosecret:
+                      description: NoSecret indicates whether a secret should be created
+                      type: boolean
+                    objectstoreprovider:
+                      description: Provider for object store
+                      type: string
+                    plugins:
+                      description: Velero plugins, including
+                      items:
+                        type: string
+                      type: array
+                    snapshotlocationconfig:
+                      description: SnapshotLocationConfig is for provider-specific configuration
+                        fields
+                      type: string
+                    upgradeoption:
+                      description: Upgrade option
+                      enum:
+                      - Manual
+                      - Auto
+                      type: string
+                    useprivateregistry:
+                      description: UsePrivateRegistry indicates whether to pull velero image
+                        from a private registry
+                      type: boolean
+                    usevolumesnapshots:
+                      description: UseVolumeSnapshots indicates whether a default snapshot
+                        location should be created
+                      type: boolean
+                    version:
+                      description: Version of Velero
+                      type: string
+                  required:
+                  - plugins
+                  type: object
+                status:
+                  description: VeleroServiceStatus defines the observed state of VeleroService
+                  properties:
+                    enabled:
+                      description: Whether the service is enabled or not
+                      type: boolean
+                    guestcbtenabled:
+                      description: Whether the ChangeBlockTracking is enabled or not in
+                        guest clusters
+                      type: boolean
+                    installmessage:
+                      description: Message is a message about the VeleroService install.
+                      type: string
+                    installphase:
+                      description: Phase is the current state of VeleroService install
+                      enum:
+                      - Failed
+                      - Completed
+                      - InProgress
+                      - PartiallyFailed
+                      type: string
+                    version:
+                      description: Version is the version of the installed Velero
+                      type: string
+                  type: object
+              type: object
+          served: true
+          storage: true
+          subresources:
+            status: {}
+    format: plain
+  description: >-
+    Velero vSphere Operator helps users install Velero and vSphere plugin on
+    Supervisor cluster of vSphere with Kubernetes
+  eula: >-
+    Velero
+
+
+    Apache License
+
+    Version 2.0, January 2004
+
+    http://www.apache.org/licenses/
+
+
+    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+
+    1. Definitions.
+
+
+    "License" shall mean the terms and conditions for use, reproduction,
+
+    and distribution as defined by Sections 1 through 9 of this document.
+
+
+    "Licensor" shall mean the copyright owner or entity authorized by
+
+    the copyright owner that is granting the License.
+
+
+    "Legal Entity" shall mean the union of the acting entity and all
+
+    other entities that control, are controlled by, or are under common
+
+    control with that entity. For the purposes of this definition,
+
+    "control" means (i) the power, direct or indirect, to cause the
+
+    direction or management of such entity, whether by contract or
+
+    otherwise, or (ii) ownership of fifty percent (50%) or more of the
+
+    outstanding shares, or (iii) beneficial ownership of such entity.
+
+
+    "You" (or "Your") shall mean an individual or Legal Entity
+
+    exercising permissions granted by this License.
+
+
+    "Source" form shall mean the preferred form for making modifications,
+
+    including but not limited to software source code, documentation
+
+    source, and configuration files.
+
+
+    "Object" form shall mean any form resulting from mechanical
+
+    transformation or translation of a Source form, including but
+
+    not limited to compiled object code, generated documentation,
+
+    and conversions to other media types.
+
+
+    "Work" shall mean the work of authorship, whether in Source or
+
+    Object form, made available under the License, as indicated by a
+
+    copyright notice that is included in or attached to the work
+
+    (an example is provided in the Appendix below).
+
+
+    "Derivative Works" shall mean any work, whether in Source or Object
+
+    form, that is based on (or derived from) the Work and for which the
+
+    editorial revisions, annotations, elaborations, or other modifications
+
+    represent, as a whole, an original work of authorship. For the purposes
+
+    of this License, Derivative Works shall not include works that remain
+
+    separable from, or merely link (or bind by name) to the interfaces of,
+
+    the Work and Derivative Works thereof.
+
+
+    "Contribution" shall mean any work of authorship, including
+
+    the original version of the Work and any modifications or additions
+
+    to that Work or Derivative Works thereof, that is intentionally
+
+    submitted to Licensor for inclusion in the Work by the copyright owner
+
+    or by an individual or Legal Entity authorized to submit on behalf of
+
+    the copyright owner. For the purposes of this definition, "submitted"
+
+    means any form of electronic, verbal, or written communication sent
+
+    to the Licensor or its representatives, including but not limited to
+
+    communication on electronic mailing lists, source code control systems,
+
+    and issue tracking systems that are managed by, or on behalf of, the
+
+    Licensor for the purpose of discussing and improving the Work, but
+
+    excluding communication that is conspicuously marked or otherwise
+
+    designated in writing by the copyright owner as "Not a Contribution."
+
+
+    "Contributor" shall mean Licensor and any individual or Legal Entity
+
+    on behalf of whom a Contribution has been received by Licensor and
+
+    subsequently incorporated within the Work.
+
+
+    2. Grant of Copyright License. Subject to the terms and conditions of
+
+    this License, each Contributor hereby grants to You a perpetual,
+
+    worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+
+    copyright license to reproduce, prepare Derivative Works of,
+
+    publicly display, publicly perform, sublicense, and distribute the
+
+    Work and such Derivative Works in Source or Object form.
+
+
+    3. Grant of Patent License. Subject to the terms and conditions of
+
+    this License, each Contributor hereby grants to You a perpetual,
+
+    worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+
+    (except as stated in this section) patent license to make, have made,
+
+    use, offer to sell, sell, import, and otherwise transfer the Work,
+
+    where such license applies only to those patent claims licensable
+
+    by such Contributor that are necessarily infringed by their
+
+    Contribution(s) alone or by combination of their Contribution(s)
+
+    with the Work to which such Contribution(s) was submitted. If You
+
+    institute patent litigation against any entity (including a
+
+    cross-claim or counterclaim in a lawsuit) alleging that the Work
+
+    or a Contribution incorporated within the Work constitutes direct
+
+    or contributory patent infringement, then any patent licenses
+
+    granted to You under this License for that Work shall terminate
+
+    as of the date such litigation is filed.
+
+
+    4. Redistribution. You may reproduce and distribute copies of the
+
+    Work or Derivative Works thereof in any medium, with or without
+
+    modifications, and in Source or Object form, provided that You
+
+    meet the following conditions:
+
+
+    (a) You must give any other recipients of the Work or
+
+    Derivative Works a copy of this License; and
+
+
+    (b) You must cause any modified files to carry prominent notices
+
+    stating that You changed the files; and
+
+
+    (c) You must retain, in the Source form of any Derivative Works
+
+    that You distribute, all copyright, patent, trademark, and
+
+    attribution notices from the Source form of the Work,
+
+    excluding those notices that do not pertain to any part of
+
+    the Derivative Works; and
+
+
+    (d) If the Work includes a "NOTICE" text file as part of its
+
+    distribution, then any Derivative Works that You distribute must
+
+    include a readable copy of the attribution notices contained
+
+    within such NOTICE file, excluding those notices that do not
+
+    pertain to any part of the Derivative Works, in at least one
+
+    of the following places: within a NOTICE text file distributed
+
+    as part of the Derivative Works; within the Source form or
+
+    documentation, if provided along with the Derivative Works; or,
+
+    within a display generated by the Derivative Works, if and
+
+    wherever such third-party notices normally appear. The contents
+
+    of the NOTICE file are for informational purposes only and
+
+    do not modify the License. You may add Your own attribution
+
+    notices within Derivative Works that You distribute, alongside
+
+    or as an addendum to the NOTICE text from the Work, provided
+
+    that such additional attribution notices cannot be construed
+
+    as modifying the License.
+
+
+    You may add Your own copyright statement to Your modifications and
+
+    may provide additional or different license terms and conditions
+
+    for use, reproduction, or distribution of Your modifications, or
+
+    for any such Derivative Works as a whole, provided Your use,
+
+    reproduction, and distribution of the Work otherwise complies with
+
+    the conditions stated in this License.
+
+
+    5. Submission of Contributions. Unless You explicitly state otherwise,
+
+    any Contribution intentionally submitted for inclusion in the Work
+
+    by You to the Licensor shall be under the terms and conditions of
+
+    this License, without any additional terms or conditions.
+
+    Notwithstanding the above, nothing herein shall supersede or modify
+
+    the terms of any separate license agreement you may have executed
+
+    with Licensor regarding such Contributions.
+
+
+    6. Trademarks. This License does not grant permission to use the trade
+
+    names, trademarks, service marks, or product names of the Licensor,
+
+    except as required for reasonable and customary use in describing the
+
+    origin of the Work and reproducing the content of the NOTICE file.
+
+
+    7. Disclaimer of Warranty. Unless required by applicable law or
+
+    agreed to in writing, Licensor provides the Work (and each
+
+    Contributor provides its Contributions) on an "AS IS" BASIS,
+
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+
+    implied, including, without limitation, any warranties or conditions
+
+    of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+
+    PARTICULAR PURPOSE. You are solely responsible for determining the
+
+    appropriateness of using or redistributing the Work and assume any
+
+    risks associated with Your exercise of permissions under this License.
+
+
+    8. Limitation of Liability. In no event and under no legal theory,
+
+    whether in tort (including negligence), contract, or otherwise,
+
+    unless required by applicable law (such as deliberate and grossly
+
+    negligent acts) or agreed to in writing, shall any Contributor be
+
+    liable to You for damages, including any direct, indirect, special,
+
+    incidental, or consequential damages of any character arising as a
+
+    result of this License or out of the use or inability to use the
+
+    Work (including but not limited to damages for loss of goodwill,
+
+    work stoppage, computer failure or malfunction, or any and all
+
+    other commercial damages or losses), even if such Contributor
+
+    has been advised of the possibility of such damages.
+
+
+    9. Accepting Warranty or Additional Liability. While redistributing
+
+    the Work or Derivative Works thereof, You may choose to offer,
+
+    and charge a fee for, acceptance of support, warranty, indemnity,
+
+    or other liability obligations and/or rights consistent with this
+
+    License. However, in accepting such obligations, You may act only
+
+    on Your own behalf and on Your sole responsibility, not on behalf
+
+    of any other Contributor, and only if You agree to indemnify,
+
+    defend, and hold each Contributor harmless for any liability
+
+    incurred by, or claims asserted against, such Contributor by reason
+
+    of your accepting any such warranty or additional liability.
+
+
+    END OF TERMS AND CONDITIONS
+
+
+    APPENDIX: How to apply the Apache License to your work.
+
+
+    To apply the Apache License to your work, attach the following
+
+    boilerplate notice, with the fields enclosed by brackets "{}"
+
+    replaced with your own identifying information. (Don't include
+
+    the brackets!)  The text should be enclosed in the appropriate
+
+    comment syntax for the file format. We also recommend that a
+
+    file or class name and description of purpose be included on the
+
+    same "printed page" as the copyright notice for easier
+
+    identification within third-party archives.
+
+
+    Copyright {yyyy} {name of copyright owner}
+
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+
+    you may not use this file except in compliance with the License.
+
+    You may obtain a copy of the License at
+
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+
+    Unless required by applicable law or agreed to in writing, software
+
+    distributed under the License is distributed on an "AS IS" BASIS,
+
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+    See the License for the specific language governing permissions and
+
+    limitations under the License.
+
+
+
+    vSphere Plugin for Velero
+
+
+    Copyright (c) 2019 VMware, Inc.  All rights reserved.
+
+
+    The Apache 2.0 license (the "License") set forth below applies to all parts
+    of the vSphere Plugin for Velero project.  You may not use this file except
+    in compliance with the License.
+
+
+    Apache License
+
+
+    Version 2.0, January 2004
+
+    http://www.apache.org/licenses/
+
+
+    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+
+    1. Definitions.
+
+
+    "License" shall mean the terms and conditions for use, reproduction,
+
+    and distribution as defined by Sections 1 through 9 of this document.
+
+
+    "Licensor" shall mean the copyright owner or entity authorized by the
+
+    copyright owner that is granting the License.
+
+
+    "Legal Entity" shall mean the union of the acting entity and all other
+
+    entities that control, are controlled by, or are under common control
+
+    with that entity. For the purposes of this definition, "control" means
+
+    (i) the power, direct or indirect, to cause the direction or management
+
+    of such entity, whether by contract or otherwise, or (ii) ownership
+
+    of fifty percent (50%) or more of the outstanding shares, or (iii)
+
+    beneficial ownership of such entity.
+
+
+    "You" (or "Your") shall mean an individual or Legal Entity exercising
+
+    permissions granted by this License.
+
+
+    "Source" form shall mean the preferred form for making modifications,
+
+    including but not limited to software source code, documentation source,
+
+    and configuration files.
+
+
+    "Object" form shall mean any form resulting from mechanical transformation
+
+    or translation of a Source form, including but not limited to compiled
+
+    object code, generated documentation, and conversions to other media
+
+    types.
+
+
+    "Work" shall mean the work of authorship, whether in Source or
+
+    Object form, made available under the License, as indicated by a copyright
+
+    notice that is included in or attached to the work (an example is provided
+
+    in the Appendix below).
+
+
+    "Derivative Works" shall mean any work, whether in Source or Object form,
+
+    that is based on (or derived from) the Work and for which the editorial
+
+    revisions, annotations, elaborations, or other modifications represent,
+
+    as a whole, an original work of authorship. For the purposes of this
+
+    License, Derivative Works shall not include works that remain separable
+
+    from, or merely link (or bind by name) to the interfaces of, the Work
+
+    and Derivative Works thereof.
+
+
+    "Contribution" shall mean any work of authorship, including the
+
+    original version of the Work and any modifications or additions to
+
+    that Work or Derivative Works thereof, that is intentionally submitted
+
+    to Licensor for inclusion in the Work by the copyright owner or by an
+
+    individual or Legal Entity authorized to submit on behalf of the copyright
+
+    owner. For the purposes of this definition, "submitted" means any form of
+
+    electronic, verbal, or written communication sent to the Licensor or its
+
+    representatives, including but not limited to communication on electronic
+
+    mailing lists, source code control systems, and issue tracking systems
+
+    that are managed by, or on behalf of, the Licensor for the purpose of
+
+    discussing and improving the Work, but excluding communication that is
+
+    conspicuously marked or otherwise designated in writing by the copyright
+
+    owner as "Not a Contribution."
+
+
+    "Contributor" shall mean Licensor and any individual or Legal Entity
+
+    on behalf of whom a Contribution has been received by Licensor and
+
+    subsequently incorporated within the Work.
+
+
+    2. Grant of Copyright License.
+
+    Subject to the terms and conditions of this License, each Contributor
+
+    hereby grants to You a perpetual, worldwide, non-exclusive, no-charge,
+
+    royalty-free, irrevocable copyright license to reproduce, prepare
+
+    Derivative Works of, publicly display, publicly perform, sublicense, and
+
+    distribute the Work and such Derivative Works in Source or Object form.
+
+
+    3. Grant of Patent License.
+
+    Subject to the terms and conditions of this License, each Contributor
+
+    hereby grants to You a perpetual, worldwide, non-exclusive, no-charge,
+
+    royalty- free, irrevocable (except as stated in this section) patent
+
+    license to make, have made, use, offer to sell, sell, import, and
+
+    otherwise transfer the Work, where such license applies only to those
+
+    patent claims licensable by such Contributor that are necessarily
+
+    infringed by their Contribution(s) alone or by combination of
+
+    their Contribution(s) with the Work to which such Contribution(s)
+
+    was submitted. If You institute patent litigation against any entity
+
+    (including a cross-claim or counterclaim in a lawsuit) alleging that the
+
+    Work or a Contribution incorporated within the Work constitutes direct
+
+    or contributory patent infringement, then any patent licenses granted
+
+    to You under this License for that Work shall terminate as of the date
+
+    such litigation is filed.
+
+
+    4. Redistribution.
+
+    You may reproduce and distribute copies of the Work or Derivative Works
+
+    thereof in any medium, with or without modifications, and in Source or
+
+    Object form, provided that You meet the following conditions:
+
+      a. You must give any other recipients of the Work or Derivative Works
+         a copy of this License; and
+
+      b. You must cause any modified files to carry prominent notices stating
+         that You changed the files; and
+
+      c. You must retain, in the Source form of any Derivative Works that
+         You distribute, all copyright, patent, trademark, and attribution
+         notices from the Source form of the Work, excluding those notices
+         that do not pertain to any part of the Derivative Works; and
+
+      d. If the Work includes a "NOTICE" text file as part of its
+         distribution, then any Derivative Works that You distribute must
+         include a readable copy of the attribution notices contained
+         within such NOTICE file, excluding those notices that do not
+         pertain to any part of the Derivative Works, in at least one of
+         the following places: within a NOTICE text file distributed as part
+         of the Derivative Works; within the Source form or documentation,
+         if provided along with the Derivative Works; or, within a display
+         generated by the Derivative Works, if and wherever such third-party
+         notices normally appear. The contents of the NOTICE file are for
+         informational purposes only and do not modify the License. You
+         may add Your own attribution notices within Derivative Works that
+         You distribute, alongside or as an addendum to the NOTICE text
+         from the Work, provided that such additional attribution notices
+         cannot be construed as modifying the License.  You may add Your own
+         copyright statement to Your modifications and may provide additional
+         or different license terms and conditions for use, reproduction, or
+         distribution of Your modifications, or for any such Derivative Works
+         as a whole, provided Your use, reproduction, and distribution of the
+         Work otherwise complies with the conditions stated in this License.
+
+    5. Submission of Contributions.
+
+    Unless You explicitly state otherwise, any Contribution intentionally
+
+    submitted for inclusion in the Work by You to the Licensor shall be
+
+    under the terms and conditions of this License, without any additional
+
+    terms or conditions.  Notwithstanding the above, nothing herein shall
+
+    supersede or modify the terms of any separate license agreement you may
+
+    have executed with Licensor regarding such Contributions.
+
+
+    6. Trademarks.
+
+    This License does not grant permission to use the trade names, trademarks,
+
+    service marks, or product names of the Licensor, except as required for
+
+    reasonable and customary use in describing the origin of the Work and
+
+    reproducing the content of the NOTICE file.
+
+
+    7. Disclaimer of Warranty.
+
+    Unless required by applicable law or agreed to in writing, Licensor
+
+    provides the Work (and each Contributor provides its Contributions) on
+
+    an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+
+    express or implied, including, without limitation, any warranties or
+
+    conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR
+
+    A PARTICULAR PURPOSE. You are solely responsible for determining the
+
+    appropriateness of using or redistributing the Work and assume any risks
+
+    associated with Your exercise of permissions under this License.
+
+
+    8. Limitation of Liability.
+
+    In no event and under no legal theory, whether in tort (including
+
+    negligence), contract, or otherwise, unless required by applicable law
+
+    (such as deliberate and grossly negligent acts) or agreed to in writing,
+
+    shall any Contributor be liable to You for damages, including any direct,
+
+    indirect, special, incidental, or consequential damages of any character
+
+    arising as a result of this License or out of the use or inability to
+
+    use the Work (including but not limited to damages for loss of goodwill,
+
+    work stoppage, computer failure or malfunction, or any and all other
+
+    commercial damages or losses), even if such Contributor has been advised
+
+    of the possibility of such damages.
+
+
+    9. Accepting Warranty or Additional Liability.
+
+    While redistributing the Work or Derivative Works thereof, You may
+
+    choose to offer, and charge a fee for, acceptance of support, warranty,
+
+    indemnity, or other liability obligations and/or rights consistent with
+
+    this License. However, in accepting such obligations, You may act only
+
+    on Your own behalf and on Your sole responsibility, not on behalf of
+
+    any other Contributor, and only if You agree to indemnify, defend, and
+
+    hold each Contributor harmless for any liability incurred by, or claims
+
+    asserted against, such Contributor by reason of your accepting any such
+
+    warranty or additional liability.
+
+
+    END OF TERMS AND CONDITIONS
+  label: Velero vSphere Operator
+  operatorYaml:
+    content: |
+      apiVersion: appplatform.wcp.vmware.com/v1alpha1
+      kind: WCPNamespace
+      metadata:
+        labels: 
+          pod-security.kubernetes.io/enforce: privileged
+        name: '{{ .service.namespace }}'
+        namespace: '{{ .service.namespace }}'
+      ---
+      kind: ClusterRole
+      apiVersion: rbac.authorization.k8s.io/v1
+      metadata:
+        name: velero-vsphere-operator-webhook-role
+      rules:
+      - apiGroups:
+        - cert-manager.io
+        resources:
+        - certificates
+        - issuers
+        verbs:
+        - create
+        - delete
+        - get
+        - list
+        - watch
+        - update
+        - patch
+      - apiGroups:
+        - cert-manager.io
+        resources:
+        - certificates/status
+        - issuers/status
+        verbs:
+        - get
+        - list
+        - watch
+      - apiGroups:
+        - admissionregistration.k8s.io
+        resources:
+        - mutatingwebhookconfigurations
+        verbs:
+        - create
+        - delete
+        - get
+        - list
+        - watch
+        - update
+        - patch
+      ---
+      kind: ClusterRoleBinding
+      apiVersion: rbac.authorization.k8s.io/v1
+      metadata:
+        name: velero-vsphere-operator-webhook-role-binding
+      subjects:
+      - kind: ServiceAccount
+        name: default
+        namespace: vmware-system-appplatform-operator-system
+      roleRef:
+        kind: ClusterRole
+        name: velero-vsphere-operator-webhook-role
+        apiGroup: rbac.authorization.k8s.io
+      ---
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRole
+      metadata:
+        creationTimestamp: null
+        labels:
+          component: velero-vsphere-operator
+        name: operator
+      rules:
+      - apiGroups:
+        - ""
+        resources:
+        - events
+        - namespaces
+        - pods
+        - secrets
+        - serviceaccounts
+        verbs:
+        - '*'
+      - apiGroups:
+        - apiextensions.k8s.io
+        resources:
+        - customresourcedefinitions
+        verbs:
+        - '*'
+      - apiGroups:
+        - apps
+        - extensions
+        resources:
+        - deployments
+        - deployments/scale
+        - deployments/status
+        - replicasets
+        verbs:
+        - '*'
+      - apiGroups:
+        - backupdriver.cnsdp.vmware.com
+        resources:
+        - '*'
+        verbs:
+        - '*'
+      - apiGroups:
+        - cluster.x-k8s.io
+        resources:
+        - clusters
+        verbs:
+        - get
+        - list
+        - watch
+      - apiGroups:
+        - cluster.x-k8s.io
+        resources:
+        - clusters/status
+        verbs:
+        - get
+      - apiGroups:
+        - datamover.cnsdp.vmware.com
+        resources:
+        - '*'
+        verbs:
+        - '*'
+      - apiGroups:
+        - policy
+        resourceNames:
+        - wcp-privileged-psp
+        resources:
+        - podsecuritypolicies
+        verbs:
+        - use
+      - apiGroups:
+        - rbac.authorization.k8s.io
+        resources:
+        - '*'
+        verbs:
+        - '*'
+      - apiGroups:
+        - velero.io
+        resources:
+        - '*'
+        verbs:
+        - '*'
+      - apiGroups:
+        - veleroappoperator.vmware.com
+        resources:
+        - veleroservices
+        verbs:
+        - '*'
+      - apiGroups:
+        - veleroappoperator.vmware.com
+        resources:
+        - veleroservices/status
+        verbs:
+        - get
+        - patch
+        - update
+      - apiGroups:
+        - vmoperator.vmware.com
+        resources:
+        - virtualmachines
+        verbs:
+        - get
+        - list
+        - patch
+        - update
+        - watch
+      - apiGroups:
+        - vmoperator.vmware.com
+        resources:
+        - virtualmachines/status
+        verbs:
+        - get
+        - list
+      - apiGroups:
+        - vmware.infrastructure.cluster.x-k8s.io
+        resources:
+        - providerserviceaccounts
+        verbs:
+        - create
+        - delete
+        - get
+        - list
+        - patch
+        - update
+        - watch
+      - apiGroups:
+        - vmware.infrastructure.cluster.x-k8s.io
+        resources:
+        - providerserviceaccounts/status
+        verbs:
+        - delete
+        - get
+        - list
+        - patch
+        - update
+      - apiGroups:
+        - vmware.infrastructure.cluster.x-k8s.io
+        resources:
+        - vsphereclusters
+        verbs:
+        - get
+        - list
+        - watch
+      - apiGroups:
+        - vmware.infrastructure.cluster.x-k8s.io
+        resources:
+        - vsphereclusters/status
+        verbs:
+        - get
+      ---
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRole
+      metadata:
+        labels:
+          component: velero-vsphere-operator
+          rbac.authorization.k8s.io/aggregate-to-edit: "true"
+        name: veleroservice-editor-role
+      rules:
+      - apiGroups:
+        - veleroappoperator.vmware.com
+        resources:
+        - veleroservices
+        verbs:
+        - create
+        - delete
+        - get
+        - list
+        - patch
+        - update
+        - watch
+      - apiGroups:
+        - veleroappoperator.vmware.com
+        resources:
+        - veleroservices/status
+        verbs:
+        - get
+        - patch
+        - update
+      - apiGroups:
+        - velero.io
+        resources:
+        - '*'
+        verbs:
+        - '*'
+      - apiGroups:
+        - datamover.cnsdp.vmware.com
+        resources:
+        - '*'
+        verbs:
+        - '*'
+      - apiGroups:
+        - backupdriver.cnsdp.vmware.com
+        resources:
+        - '*'
+        verbs:
+        - '*'
+      ---
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRole
+      metadata:
+        labels:
+          component: velero-vsphere-operator
+          rbac.authorization.k8s.io/aggregate-to-view: "true"
+        name: veleroservice-viewer-role
+      rules:
+      - apiGroups:
+        - veleroappoperator.vmware.com
+        resources:
+        - veleroservices
+        verbs:
+        - get
+        - list
+        - watch
+      - apiGroups:
+        - veleroappoperator.vmware.com
+        resources:
+        - veleroservices/status
+        verbs:
+        - get
+      - apiGroups:
+        - velero.io
+        resources:
+        - '*'
+        verbs:
+        - get
+        - list
+        - watch
+      - apiGroups:
+        - datamover.cnsdp.vmware.com
+        resources:
+        - '*'
+        verbs:
+        - get
+        - list
+        - watch
+      - apiGroups:
+        - backupdriver.cnsdp.vmware.com
+        resources:
+        - '*'
+        verbs:
+        - get
+        - list
+        - watch
+      ---
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRoleBinding
+      metadata:
+        labels:
+          component: velero-vsphere-operator
+        name: operator
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: operator
+      subjects:
+      - kind: ServiceAccount
+        name: default
+        namespace: '{{ .service.namespace }}'
+      ---
+      apiVersion: v1
+      kind: Service
+      metadata:
+        labels:
+          component: velero-vsphere-operator
+          component-webhook: velero-vsphere-operator-webhook
+        name: webhook-service
+        namespace: '{{ .service.namespace }}'
+      spec:
+        ports:
+        - port: 443
+          targetPort: 9881
+        selector:
+          component: velero-vsphere-operator
+          component-webhook: velero-vsphere-operator-webhook
+      ---
+      apiVersion: cert-manager.io/v1
+      kind: Certificate
+      metadata:
+        labels:
+          component: velero-vsphere-operator
+          component-webhook: velero-vsphere-operator-webhook
+        name: serving-cert
+        namespace: '{{ .service.namespace }}'
+      spec:
+        dnsNames:
+        - webhook-service.{{ .service.namespace }}.svc
+        - webhook-service.{{ .service.namespace }}.svc.cluster.local
+        issuerRef:
+          kind: Issuer
+          name: selfsigned-issuer
+        secretName: webhook-service-cert
+      ---
+      apiVersion: cert-manager.io/v1
+      kind: Issuer
+      metadata:
+        labels:
+          component: velero-vsphere-operator
+          component-webhook: velero-vsphere-operator-webhook
+        name: selfsigned-issuer
+        namespace: '{{ .service.namespace }}'
+      spec:
+        selfSigned: {}
+      ---
+      apiVersion: admissionregistration.k8s.io/v1
+      kind: MutatingWebhookConfiguration
+      metadata:
+        annotations:
+          cert-manager.io/inject-ca-from: '{{ .service.namespace }}/serving-cert'
+        labels:
+          component: velero-vsphere-operator
+          component-webhook: velero-vsphere-operator-webhook
+        name: mutating-webhook-configuration
+      webhooks:
+      - admissionReviewVersions:
+        - v1
+        clientConfig:
+          service:
+            name: webhook-service
+            namespace: '{{ .service.namespace }}'
+            path: /cbt-mutate-vmop-vm
+        failurePolicy: Fail
+        name: cbt.mutate.virtualmachine
+        objectSelector:
+          matchExpressions:
+          - key: capw.vmware.com/cluster.name
+            operator: Exists
+        rules:
+        - apiGroups:
+          - vmoperator.vmware.com
+          apiVersions:
+          - v1alpha1
+          operations:
+          - CREATE
+          - UPDATE
+          resources:
+          - virtualmachines
+        sideEffects: None
+      ---
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        labels:
+          component: velero-vsphere-operator
+        name: velero-vsphere-operator
+        namespace: '{{ .service.namespace }}'
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            component: velero-vsphere-operator
+        template:
+          metadata:
+            labels:
+              component: velero-vsphere-operator
+          spec:
+            containers:
+            - args:
+              - manager
+              command:
+              - /velero-vsphere
+              image: '{{ .Values.registryName | default "vsphereveleroplugin" }}/velero-vsphere-operator:1.6.1'
+              name: manager
+              resources:
+                limits:
+                  cpu: 400m
+                  memory: 200Mi
+                requests:
+                  cpu: 100m
+                  memory: 20Mi
+            hostNetwork: true
+            {{ if .Values.registryUsername }} 
+            imagePullSecrets: 
+              - name: "velero-vsphere-regcred" 
+            {{ end }} 
+            nodeSelector:
+              node-role.kubernetes.io/control-plane: ""
+            terminationGracePeriodSeconds: 10
+            tolerations:
+            - effect: NoSchedule
+              key: node-role.kubernetes.io/master
+              operator: Exists
+            - effect: NoSchedule
+              key: node-role.kubernetes.io/control-plane
+              operator: Exists
+            - effect: NoSchedule
+              key: kubeadmNode
+              operator: Equal
+              value: master
+      ---
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        labels:
+          component: velero-vsphere-operator
+          component-webhook: velero-vsphere-operator-webhook
+        name: velero-vsphere-operator-webhook
+        namespace: '{{ .service.namespace }}'
+      spec:
+        strategy:
+          rollingUpdate:
+            maxSurge: 0
+            maxUnavailable: 1
+          type: RollingUpdate
+        replicas: 3
+        selector:
+          matchLabels:
+            component: velero-vsphere-operator
+            component-webhook: velero-vsphere-operator-webhook
+        template:
+          metadata:
+            labels:
+              component: velero-vsphere-operator
+              component-webhook: velero-vsphere-operator-webhook
+              name: velero-vsphere-operator-webhook
+          spec:
+            affinity:
+              podAntiAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                    - key: name
+                      operator: In
+                      values:
+                      - velero-vsphere-operator-webhook
+                  topologyKey: kubernetes.io/hostname
+            containers:
+            - args:
+              - manager
+              - --webhook-port=9881
+              - --tls-cipher-suites=TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+              command:
+              - /velero-vsphere
+              image: '{{ .Values.registryName | default "vsphereveleroplugin" }}/velero-vsphere-operator:1.6.1'
+              name: manager
+              ports:
+              - containerPort: 9881
+                name: webhook-server
+                protocol: TCP
+              resources:
+                limits:
+                  cpu: 400m
+                  memory: 200Mi
+                requests:
+                  cpu: 100m
+                  memory: 20Mi
+              volumeMounts:
+              - mountPath: /tmp/k8s-webhook-server/serving-certs
+                name: cert
+                readOnly: true
+            hostNetwork: true
+            {{ if .Values.registryUsername }} 
+            imagePullSecrets: 
+              - name: "velero-vsphere-regcred" 
+            {{ end }} 
+            nodeSelector:
+              node-role.kubernetes.io/control-plane: ""
+            terminationGracePeriodSeconds: 10
+            tolerations:
+            - effect: NoSchedule
+              key: node-role.kubernetes.io/master
+              operator: Exists
+            - effect: NoSchedule
+              key: node-role.kubernetes.io/control-plane
+              operator: Exists
+            - effect: NoSchedule
+              key: kubeadmNode
+              operator: Equal
+              value: master
+            volumes:
+            - name: cert
+              secret:
+                defaultMode: 420
+                secretName: webhook-service-cert
+      ---
+      {{ if .Values.registryUsername }}
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        labels:
+          component: velero-vsphere-operator
+        name: velero-vsphere-regcred
+        namespace: {{ .service.namespace }}
+      data:
+        .dockerconfigjson: {{ printf "{\"auths\": {\"%s\": {\"auth\": \"%s\"}}}" .Values.registryName (printf "%s:%s" .Values.registryUsername .Values.registryPasswd | b64enc) | b64enc }}
+      type: kubernetes.io/dockerconfigjson
+      {{ end }}
+    format: plain
+  serviceID: velero-vsphere
+  version: 1.6.1
