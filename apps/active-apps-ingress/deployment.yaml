@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: activeapps-svc
+  namespace: activeapps
+  labels:
+    app: activeapps
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: activeapps
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: activeapps
+  namespace: activeapps
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: activeapps
+  template:
+    metadata:
+      labels:
+        app: activeapps
+    spec:
+      containers:
+      - name: activeapps
+        image: paulbouwer/hello-kubernetes:1.5
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: activeapps-ing
+  namespace: activeapps
+  labels:
+    app: activeapps
+spec:
+  ingressClassName: contour
+  tls:
+  - hosts:
+      - activeapps.corp.internal
+    secretName: activeapps-ingress-tls
+  rules:
+    - host: activeapps.corp.internal
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: activeapps-svc
+              port: 
+                number: 80
