@@ -1,0 +1,48 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: argocd-console-selfsigned-issuer
+  namespace: svc-argocd-operator-domain-c1007
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd-console-selfsigned-cert
+  namespace: svc-argocd-operator-domain-c1007
+spec:
+  isCA: true
+  commonName: argocdapps.corp.internal
+  secretName: argocd-console-cert-tls
+  dnsNames:
+    - argocdapps.corp.internal
+  duration: 8760h
+  renewBefore: 240h
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: argocd-console-selfsigned-issuer
+    kind: Issuer
+    group: cert-manager.io
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: argodapps-console-httpproxy
+  namespace: svc-argocd-operator-domain-c1007
+  labels:
+    app: argocd-apps
+spec:
+  ingressClassName: contour
+  virtualhost:
+    fqdn: argocdapps.corp.internal
+    tls:
+      secretName: argocd-console-cert-tls
+  routes:
+    - conditions:
+      - prefix: /
+      services:
+        - name: argoapps-server
+          port: 80

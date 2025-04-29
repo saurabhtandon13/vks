@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1beta1
+kind: ArgoCD
+metadata:
+  name: argoapps
+  namespace: svc-argocd-operator-domain-c1007
+  labels:
+    owner: argo
+spec:
+  nodePlacement:
+    nodeSelector:
+      kubernetes.io/os: CRX
+  server:
+    host: argoapps.corp.internal
+    service:
+      type: LoadBalancer
