@@ -2,7 +2,7 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   name: mesh-wl01
-  namespace: gitapps
+  namespace: customerapp
 spec:
   clusterNetwork:
     services:
@@ -76,9 +76,3 @@ spec:
           ntp:
             servers:
               - ntp.broadcom.net
-                #         trust:
-                #additionalTrustedCAs:
-                #- caCert:
-                # secretRef:
-                #  name: "indus-wl01-user-trusted-ca-secret"
-                #  key: registry-cert

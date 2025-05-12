@@ -31,7 +31,7 @@ AKOSettings:
   apiServerPort: 8080 # Internal port for AKO's API server for the liveness probe of the AKO pod default=8080
   deleteConfig: 'false' # Has to be set to true in configmap if user wants to delete AKO created objects from AVI 
   disableStaticRouteSync: 'false' # If the POD networks are reachable from the Avi SE, set this knob to true.
-  clusterName: mesh-wl01   # A unique identifier for the kubernetes cluster, that helps distinguish the objects for this cluster in the avi controller. // MUST-EDIT
+  clusterName: demo-wl   # A unique identifier for the kubernetes cluster, that helps distinguish the objects for this cluster in the avi controller. // MUST-EDIT
   cniPlugin: 'antrea' # Set the string if your CNI is calico or openshift or ovn-kubernetes. For Cilium CNI, set the string as cilium only when using Cluster Scope mode for IPAM and leave it empty if using Kubernetes Host Scope mode for IPAM. enum: calico|canal|flannel|openshift|antrea|ncp|ovn-kubernetes|cilium
   enableEVH: false # This enables the Enhanced Virtual Hosting Model in Avi Controller for the Virtual Services
   layer7Only: false # If this flag is switched on, then AKO will only do layer 7 loadbalancing.
@@ -61,9 +61,9 @@ NetworkSettings:
   ## If duplicate networks are present for the network name, networkUUID should be used for appropriate network.
   # nodeNetworkList: []
   nodeNetworkList:
-    - networkName: "uat-vlan40"
+    - networkName: "prod-vlan60"
       cidrs: 
-        - "172.16.40.0/24"
+        - "172.16.60.0/24"
   #      networkUUID: "net-4567"
   #     cidrs:
   #       - 10.0.0.1/24

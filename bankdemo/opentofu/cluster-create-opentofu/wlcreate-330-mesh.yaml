@@ -1,0 +1,78 @@
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  name: ${cluster_name}
+  namespace: ${namespace}
+spec:
+  clusterNetwork:
+    services:
+      cidrBlocks: ["10.100.0.0/12"]
+    pods:
+      cidrBlocks: ["10.200.0.0/12"]
+    serviceDomain: "cluster.local"
+  topology:
+    class: ${cluster_class} 
+    version: ${k8s_version}
+    controlPlane:
+      replicas: ${control_plane_replicas}
+      metadata:
+        annotations:
+          run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
+    workers:
+      machineDeployments:
+        - class: node-pool
+          name: node-pool-01
+            #replicas: 2    # As we are using ClusterAutoScaler
+          metadata:
+            annotations:
+              run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
+              cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "${worker_node_replicas_min}"
+              cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "${worker_node_replicas_max}"
+          variables:
+            overrides:
+              - name: vmClass
+                value: ${vmclass-worker}
+    variables:
+      - name: vmClass
+        value: ${vmclass-master}
+      - name: storageClass
+        value: ${storageclass}
+      - name: node
+        value:
+          labels:
+            version: v1
+            organization: engineering
+      - name: kubernetes
+        value:
+          certificateRotation:
+            enabled: true
+            renewalDaysBeforeExpiry: 90
+          security:
+            podSecurityStandard:
+              audit: restricted
+              auditVersion: latest
+              enforce: privileged
+              enforceVersion: latest
+              warn: privileged
+              warnVersion: latest
+      - name: vsphereOptions
+        value:
+          persistentVolumes:
+            availableStorageClasses:
+              - ${storageclass}
+            defaultStorageClass: vks-storage-policy
+      - name: volumes
+        value:
+          - name: containerd
+            mountPath: /var/lib/containerd
+            storageClass: vks-storage-policy
+            capacity: 10Gi
+          - name: kubelet
+            mountPath: /var/lib/kubelet
+            storageClass: vks-storage-policy
+            capacity: 10Gi
+      - name: osConfiguration
+        value:
+          ntp:
+            servers:
+              - ntp.broadcom.net
