@@ -1,7 +1,7 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  name: mesh-wl01
+  name: mesh-wl02
   namespace: customerapp
 spec:
   clusterNetwork:
@@ -14,7 +14,7 @@ spec:
     class: builtin-generic-v3.3.0 
     version: v1.32.0---vmware.6-fips-vkr.2
     controlPlane:
-      replicas: 3
+      replicas: 1
       metadata:
         annotations:
           run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
@@ -26,7 +26,7 @@ spec:
           metadata:
             annotations:
               run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
-              cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "2"
+              cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "1"
               cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "5"
           variables:
             overrides:

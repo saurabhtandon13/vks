@@ -19,7 +19,7 @@ variable "control_plane_replicas" {
 }
 
 variable "worker_node_replicas_min" {
-  default = 2
+  default = 1
 }
 
 variable "worker_node_replicas_max" {
