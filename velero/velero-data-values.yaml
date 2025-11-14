@@ -1,0 +1,103 @@
+# annotations:
+# backupRepository:
+#   config:
+#     cacheLimitMB: 5000
+#     fullMaintenanceInterval: normalGC
+#   defaultMaintenanceFrequency: 1h
+#   maintenanceJobConfig:
+#     globalConfig:
+#       loadAffinity: []
+#       podResources:
+#         cpuLimit: "0"
+#         cpuRequest: "0"
+#         memoryLimit: "0"
+#         memoryRequest: "0"
+backupStorageLocation:
+  bucket: "online-boutique-backup"
+  caCert: |
+    -----BEGIN CERTIFICATE-----
+    MIIF2zCCA8OgAwIBAgIUQYdWExcm7tniVblDugVq89hhkzcwDQYJKoZIhvcNAQEN
+    BQAwYjELMAkGA1UEBhMCQ04xDjAMBgNVBAgMBUluZGlhMQ4wDAYDVQQHDAVJbmRp
+    YTEQMA4GA1UECgwHZXhhbXBsZTERMA8GA1UECwwIUGVyc29uYWwxDjAMBgNVBAMM
+    BW1pbmlvMB4XDTI1MTExMDA5NTQzNFoXDTM1MTEwODA5NTQzNFowYjELMAkGA1UE
+    BhMCQ04xDjAMBgNVBAgMBUluZGlhMQ4wDAYDVQQHDAVJbmRpYTEQMA4GA1UECgwH
+    ZXhhbXBsZTERMA8GA1UECwwIUGVyc29uYWwxDjAMBgNVBAMMBW1pbmlvMIICIjAN
+    BgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAtMv5m2BPrmdx5LCsyAzbfP3usipP
+    sgd4jebAqa8CcVki1u+/31CfYwzCLhF5vRsYEO6K3FTb3H5hs92sQ0d/2I3uvpfN
+    sSPhOYGuVWO0x1XBlvMh2YGl9TXE/s7zAQuxhgWg7PjC+finz3WTGJKz+OnJcjHh
+    J097OizxVlDLWlD5Kd11cqep4Name4uOARNvhIrRu/BVzvxOCHCwBKog8Y+plYOi
+    Hz6rHWLDP/mcG8+AAAysP7DK47vgun4Pw7VK+4967i3FKvnsxx/LBGL6xV6HYJ5T
+    +TdqgW4R6MW/JxBfgvLuFq0nc7FyqjSHwtJWyrA3/v90J9sM2IULszqzaQH88cbE
+    c+zTbfA0RzASxO58zTrLkS4bHPY75XdJe2M+Hvw8iChbvl/4P2bW+qZ14tY7PhOY
+    60SQyZRMPAG89rnuLuSahMaRXvQjiYqCCUy5ZBAP5qSWF5Gcc996XQiT3BxmvUva
+    UJEwrC0iU5pMkxyAPlAodgG2lWZe3/FUOqwFHUYlie7rkDmiJd/wyO2FGyB2iZHe
+    I1PZTOJ2dI0Mcn1uAn56IMUNPuqrkhWTSoMhwbARlP3RVxOh9DEqEcswc3q6780R
+    nnKqVGwmbBfoe7MaD+aIukuY9gmKlD8RvxGvohGHYCqenY2UJQ9oV5HhlmhOnOco
+    Pm/BVx6cMC+QlqMCAwEAAaOBiDCBhTAfBgNVHSMEGDAWgBSPSV0qGCJk507S1Mk4
+    zp6hr70rVzAJBgNVHRMEAjAAMAsGA1UdDwQEAwIE8DATBgNVHSUEDDAKBggrBgEF
+    BQcDATAWBgNVHREEDzANggVtaW5pb4cECp6APjAdBgNVHQ4EFgQUFim04oz9BuXJ
+    3VfrRv6WkHdLKp0wDQYJKoZIhvcNAQENBQADggIBAIl5KNEF5reUOJkVmY2LvSR/
+    wzja+nts/PInPoDY2xZ6myM1yt9JwqL3ILDQLSSn6lRUxpicQRHfxjg23d3NoLm8
+    si7D6QJEznlw2hGTIociuPsVb/Q5Exzm1sHJ2/RtCcHXoHfszE2IIEEJ8e+O2q79
+    PUhqnTNtkUsbhgz6CxsvCC71g27YonNkcTVsLVY0QaUInGFHedomejH+pvpQskK1
+    bh+69snYRiCyd2canPhCRL8xzEi8PcaYrAerNw/4k4sIahCrjtedsacdBdebRcQ8
+    7wLxraDzCgHe8PUZ/NlfKimQXerEUtN9Xb0WPDLQWleRpVniZK2/DTtJky9fPvmi
+    PVkQ67Ow8gE5PNl/OnS6DFQuqOnR8rxFcT9FgeoVaMTvoDQ3IhtyIR5yZ7WShtlO
+    h9ADtxT05ONaUrCCVXfliMDmp0xsTtskW4dCjSuP6RPssumIGx4arhBoLIfp5D/X
+    60hZShYE+UTniegfJMeuvjc5tIVIX8omQwme6uBdUGTbT50aocsad4gut1i8PT+0
+    WzRetbPvUiHgf5zTUNr6Cq5Eje7h3PFbhphnIjeeiOPFEjdVGICloL75tbrxRxDs
+    /c85IAJ4zF1BWQ6ZeTkKRAl4l+nM6HrrQYoVA54JOaAfKxzVpr4SWYr4yZMvNnzS
+    s3nbnnH6aV/1k6qBAwP9
+    -----END CERTIFICATE-----
+  config:
+    region: "minio"
+    s3ForcePathStyle: "true"
+    s3Url: https://10.158.128.62:9000
+  credential: |
+    [default]
+    aws_access_key_id=7jlQivX1k0g4qoXLqJ0W
+    aws_secret_access_key=lOQ7lBep5MMKnkaFes9Toen4N0qFYTBJTsNNCBGB
+  prefix: ""
+  provider: aws
+features:
+  - EnableCSI
+# labels:
+# logLevel: info
+namespace: velero
+# nodeAgent:
+#   config:
+#     backupPVC: []
+#     loadAffinity: []
+#     loadConcurrency:
+#       globalConfig: 1
+#       perNodeConfig: []
+#     podResources:
+#       cpuLimit: "0"
+#       cpuRequest: "0"
+#       memoryLimit: "0"
+#       memoryRequest: "0"
+#     restorePVC:
+#       ignoreDelayBinding: false
+#   dataMoverPrepareTimeout: 30m
+#   enableOnLinux: true
+#   enableOnWindows: false
+#   privileged: false
+#   resources:
+#     cpuLimit: "0"
+#     cpuRequest: "0"
+#     memoryLimit: "0"
+#     memoryRequest: "0"
+# priorityClassName: ""
+# serviceAccount:
+#   annotations:
+#   name: ""
+# velero:
+#   garbageCollectionFrequency: 1h
+#   itemBlockWorkerCount: 1
+#   plugins: []
+#   podVolumeOperationTimeout: 4h
+#   resources:
+#     cpuLimit: 1000m
+#     cpuRequest: 500m
+#     memoryLimit: 512Mi
+#     memoryRequest: 128Mi

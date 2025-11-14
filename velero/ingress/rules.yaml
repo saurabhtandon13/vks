@@ -1,0 +1,10 @@
+version: v1
+resourceModifierRules:
+  - conditions:
+      groupResource: ingresses.networking.k8s.io
+      namespaces:
+        - online-boutique
+    patches:
+      - operation: replace
+        path: "/spec/ingressClassName"
+        value: "contour"

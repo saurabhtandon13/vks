@@ -1,0 +1,11 @@
+velero install --namespace velero \
+--provider aws \
+--image mirror.gcr.io/velero/velero:v1.16.2 \
+--bucket online-boutique-backup \
+--secret-file /root/software/velero/ingress/s3-credentials \
+--plugins docker.io/velero/velero-plugin-for-aws:v1.12.2 \
+--snapshot-location-config region=default \
+--uploader-type kopia \
+--use-node-agent \
+--cacert /usr/local/share/ca-certificates/minio.crt \
+--backup-location-config region=default,s3ForcePathStyle="true",s3Url=https://10.158.128.62:9000,publicUrl=https://10.158.128.62:9000

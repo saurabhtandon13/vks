@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ingress-patch-helper
+  namespace: velero
+  labels:
+    velero-patch-hook: "true"
+spec:
+  restartPolicy: Never
+  containers:
+    - name: patcher
+      image: 10.158.128.57/library/kubectl
+      command: ["sleep", "360"]
+
+---
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: restore-with-ingress-fix
+  namespace: velero
+spec:
+  backupName: online-boutique-01   # <-- replace with your backup name
+  restorePVs: true
+  hooks:
+    resources:
+      - name: patch-ingressclass
+        includedResources:
+          - pods
+        labelSelector:
+          matchLabels:
+            velero-patch-hook: "true"
+        postHooks:
+          - exec:
+              container: patcher
+              # Provide the entire command in the "command" array. Do NOT use "args".
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  echo "Patching all Ingress resources to use ingressClassName=contour..."
+                  # patch resources that have spec.ingressClassName
+                  kubectl get ingress -A -o json | \
+                    jq -r '.items[] | select(.spec.ingressClassName != null) | .metadata.namespace + "/" + .metadata.name' | \
+                    xargs -r -I {} kubectl patch ingress {} --type=json -p='[{"op":"replace","path":"/spec/ingressClassName","value":"contour"}]'
+                  echo "Ingress patching complete."
+              onError: Continue
+        labelSelector:
+          matchLabels:
+            velero-patch-hook: "true"
